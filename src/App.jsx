@@ -3,9 +3,10 @@ import './App.css';
 import { ScrollIndicator } from './components/scroll-indicator/ScrollIndicator';
 
 function App() {
+  const dataUrl = 'https://dummyjson.com/products';
   return (
     <div className='app'>
-      <ScrollIndicator />
+      <ScrollIndicator url={dataUrl} />
     </div>
   );
 }

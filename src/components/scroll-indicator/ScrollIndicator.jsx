@@ -9,6 +9,12 @@ export const ScrollIndicator = ({ url }) => {
   async function fetchData(url) {
     try {
       setLoading(true);
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`HTTP error ! Error code: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log(data);
     } catch (e) {
       setErrorM(e.message);
     } finally {
@@ -20,5 +26,8 @@ export const ScrollIndicator = ({ url }) => {
     fetchData(url);
   }, [url]);
 
+  if (errorM !== '') {
+    return <div>{errorM}</div>;
+  }
   return <div className='container'>Scroll Indicator</div>;
 };
