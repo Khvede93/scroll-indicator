@@ -17,6 +17,7 @@ export const ScrollIndicator = ({ url }) => {
       if (!data || !data.products || !data.products.length) {
         throw new Error(`No Products to show`);
       }
+      setData(data.products);
     } catch (e) {
       setErrorM(e.message);
     } finally {
@@ -30,6 +31,9 @@ export const ScrollIndicator = ({ url }) => {
 
   if (errorM !== '') {
     return <div>{errorM}</div>;
+  }
+  if (loading) {
+    return <div>Loading ! Please wait</div>;
   }
   return <div className='container'>Scroll Indicator</div>;
 };
