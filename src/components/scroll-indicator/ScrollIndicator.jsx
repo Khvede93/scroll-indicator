@@ -5,6 +5,7 @@ export const ScrollIndicator = ({ url }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [errorM, setErrorM] = useState('');
+  const [scrollPct, setScrollPct] = useState(0);
 
   async function fetchData(url) {
     try {
@@ -28,6 +29,25 @@ export const ScrollIndicator = ({ url }) => {
   useEffect(() => {
     fetchData(url);
   }, [url]);
+
+  function handleScrollPct() {
+    const scrolledAmount =
+      document.body.scrollTop || document.documentElement.scrollTop;
+
+    const totalScrollheight =
+      document.documentElement.scrollHeight -
+      document.documentElement.clientHeight;
+
+    setScrollPct((scrolledAmount / totalScrollheight) * 100);
+  }
+  console.log(scrollPct);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScrollPct);
+    return () => {
+      window.removeEventListener('scroll', () => {});
+    };
+  }, []);
 
   if (errorM !== '') {
     return <div>{errorM}</div>;
