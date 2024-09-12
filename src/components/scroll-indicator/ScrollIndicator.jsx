@@ -38,7 +38,7 @@ export const ScrollIndicator = ({ url }) => {
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight;
 
-    setScrollPct((scrolledAmount / totalScrollheight) * 100);
+    setScrollPct(Math.floor((scrolledAmount / totalScrollheight) * 100));
   }
   console.log(scrollPct);
 
