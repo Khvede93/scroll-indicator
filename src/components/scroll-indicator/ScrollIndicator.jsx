@@ -14,7 +14,9 @@ export const ScrollIndicator = ({ url }) => {
         throw new Error(`HTTP error ! Error code: ${response.status}`);
       }
       const data = await response.json();
-      console.log(data);
+      if (!data || !data.products || !data.products.length) {
+        throw new Error(`No Products to show`);
+      }
     } catch (e) {
       setErrorM(e.message);
     } finally {
