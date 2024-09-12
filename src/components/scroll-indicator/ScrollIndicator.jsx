@@ -38,9 +38,8 @@ export const ScrollIndicator = ({ url }) => {
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight;
 
-    setScrollPct(Math.floor((scrolledAmount / totalScrollheight) * 100));
+    setScrollPct(Math.round((scrolledAmount / totalScrollheight) * 100));
   }
-  console.log(scrollPct);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScrollPct);
@@ -57,7 +56,16 @@ export const ScrollIndicator = ({ url }) => {
   }
   return (
     <div className='container'>
-      <h1>Custom Scroll Indicator</h1>
+      <div className='top-container'>
+        <h1>Scrolled: {scrollPct}%</h1>
+        <div className='progress-bar'>
+          <div
+            className='scrolled-progress-bar'
+            style={{ width: `${scrollPct}%` }}
+          ></div>
+        </div>
+      </div>
+
       <div className='data-container'>
         {data && data.length
           ? data.map((item) => (
