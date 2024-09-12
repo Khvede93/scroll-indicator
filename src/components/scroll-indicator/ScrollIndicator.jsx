@@ -35,5 +35,18 @@ export const ScrollIndicator = ({ url }) => {
   if (loading) {
     return <div>Loading ! Please wait</div>;
   }
-  return <div className='container'>Scroll Indicator</div>;
+  return (
+    <div className='container'>
+      <h1>Custom Scroll Indicator</h1>
+      <div className='data-container'>
+        {data && data.length
+          ? data.map((item) => (
+              <div key={item.id}>
+                <p>{item.title}</p>
+              </div>
+            ))
+          : null}
+      </div>
+    </div>
+  );
 };
